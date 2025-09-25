@@ -19,9 +19,6 @@
                         <label for="program" class="form-label fw-semibold">Programme</label>
                         <select name="program" id="program" class="form-select">
                             <option value="">All</option>
-                            @php
-                                $programs = \App\Models\Application::distinct()->pluck('program')->filter();
-                            @endphp
                             @foreach($programs as $prog)
                                 <option value="{{ $prog }}" {{ request('program') == $prog ? 'selected' : '' }}>
                                     {{ $prog }}

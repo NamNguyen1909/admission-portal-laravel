@@ -193,12 +193,11 @@
                         <label for="program" class="form-label">Program *</label>
                         <select class="form-select @error('program') is-invalid @enderror" id="program" name="program" required>
                             <option value="">Select Program</option>
-                            <option value="Computer Science" {{ old('program') == 'Computer Science' ? 'selected' : '' }}>Computer Science</option>
-                            <option value="Business Administration" {{ old('program') == 'Business Administration' ? 'selected' : '' }}>Business Administration</option>
-                            <option value="Engineering" {{ old('program') == 'Engineering' ? 'selected' : '' }}>Engineering</option>
-                            <option value="Economics" {{ old('program') == 'Economics' ? 'selected' : '' }}>Economics</option>
-                            <option value="Medicine" {{ old('program') == 'Medicine' ? 'selected' : '' }}>Medicine</option>
-                            <option value="Law" {{ old('program') == 'Law' ? 'selected' : '' }}>Law</option>
+                            @foreach($programs as $program)
+                                <option value="{{ $program }}" {{ old('program') == $program ? 'selected' : '' }}>
+                                    {{ $program }}
+                                </option>
+                            @endforeach
                         </select>
                         @error('program')
                             <div class="invalid-feedback">{{ $message }}</div>

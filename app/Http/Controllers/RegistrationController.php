@@ -24,7 +24,8 @@ class RegistrationController extends Controller
      */
     public function create()
     {
-        return view('registrations.create');
+        $programs = config('programs.programs');
+        return view('registrations.create', compact('programs'));
     }
 
     /**
@@ -32,6 +33,8 @@ class RegistrationController extends Controller
      */
     public function store(Request $request)
     {
+        $programs = config('programs.programs');
+        
         $validated = $request->validate([
             'profile_picture' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
             'first_name' => 'required|string|max:255',
@@ -46,7 +49,7 @@ class RegistrationController extends Controller
             'passport_file' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048',
             'permanent_address' => 'nullable|string',
             'present_address' => 'nullable|string',
-            'program' => 'required|string|max:255'
+            'program' => 'required|in:' . implode(',', $programs)
         ]);
 
         // Handle profile picture upload
@@ -97,6 +100,8 @@ class RegistrationController extends Controller
      */
     public function update(Request $request, Registration $registration)
     {
+        $programs = config('programs.programs');
+        
         $validated = $request->validate([
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
@@ -110,7 +115,7 @@ class RegistrationController extends Controller
             'passport_file' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048',
             'permanent_address' => 'nullable|string',
             'present_address' => 'nullable|string',
-            'program' => 'required|string|max:255'
+            'program' => 'required|in:' . implode(',', $programs)
         ]);
 
         // Handle file upload

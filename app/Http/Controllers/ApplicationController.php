@@ -15,6 +15,7 @@ class ApplicationController extends Controller
     public function index(Request $request)
     {
         $query = Application::with('registration')->latest();
+        $programs = config('programs.programs');
 
         // Filter by program
         if ($request->filled('program')) {
@@ -37,7 +38,7 @@ class ApplicationController extends Controller
 
         $applications = $query->paginate(15)->appends($request->query());
 
-        return view('applications.index', compact('applications'));
+        return view('applications.index', compact('applications', 'programs'));
     }
 
     /**
