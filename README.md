@@ -1,61 +1,250 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Admission Portal - Laravel
 
 <p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+  <img src="https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white" alt="Laravel">
+  <img src="https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white" alt="PHP">
+  <img src="https://img.shields.io/badge/MySQL-00000F?style=for-the-badge&logo=mysql&logoColor=white" alt="MySQL">
+  <img src="https://img.shields.io/badge/SQLite-07405E?style=for-the-badge&logo=sqlite&logoColor=white" alt="SQLite">
+  <img src="https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white" alt="Bootstrap">
+  <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" alt="HTML5">
+  <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" alt="CSS3">
+  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" alt="JavaScript">
 </p>
 
-## About Laravel
+<p align="center">
+  <strong>🎓 Hệ thống quản lý quy trình tuyển sinh cho trường đại học</strong>
+</p>
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+<p align="center">
+  Bao gồm 2 module chính:<br>
+  <strong>Registration</strong>: Quản lý thông tin đăng ký của thí sinh<br>
+  <strong>Application</strong>: Quản lý hồ sơ tuyển sinh được tạo từ Registration
+</p>
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Yêu cầu hệ thống
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Bắt buộc
+- **PHP >= 8.1** (có thể cài standalone hoặc qua XAMPP)
+- **Composer** (PHP package manager)
+- **Git** (để clone project)
 
-## Learning Laravel
+### Database
+- **MySQL** (cài standalone hoặc qua XAMPP)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Tùy chọn
+- **Node.js & NPM** (chỉ cần nếu muốn build frontend assets)
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## Cách setup database
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Bước 1: Clone project
+```bash
+git clone <repository-url>
+cd admission-portal
+```
 
-## Laravel Sponsors
+### Bước 2: Cài đặt dependencies
+```bash
+composer install
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### Bước 3: Tạo file .env
+```bash
+# Copy file .env.example thành .env
+copy .env.example .env
 
-### Premium Partners
+# Hoặc trên Linux/Mac
+cp .env.example .env
+```
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+### Bước 4: Cấu hình database trong .env
+```env
+# Cấu hình MySQL
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=admission_portal
+DB_USERNAME=root
+DB_PASSWORD=your_mysql_password
+```
 
-## Contributing
+### Bước 5: Tạo database MySQL
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+**Cách 1: Sử dụng MySQL Workbench (UI)**
+1. Mở MySQL Workbench
+2. Connect đến MySQL server
+3. Tạo database mới: `CREATE DATABASE admission_portal;`
+4. Hoặc right-click → Create Schema → đặt tên `admission_portal`
 
-## Code of Conduct
+**Cách 2: Sử dụng command line**
+```bash
+# Đăng nhập MySQL
+mysql -u root -p
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+# Tạo database
+CREATE DATABASE admission_portal;
 
-## Security Vulnerabilities
+# Thoát MySQL
+exit;
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### Bước 6: Generate application key
+```bash
+php artisan key:generate
+```
 
-## License
+## Cách chạy migration + seeder
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### Chạy migration để tạo bảng
+```bash
+php artisan migrate
+```
+
+### Chạy seeder để tạo dữ liệu mẫu
+```bash
+php artisan db:seed
+```
+
+### Hoặc chạy cả migration và seeder cùng lúc
+```bash
+php artisan migrate:fresh --seed
+```
+
+## Cách start server
+
+### Khởi động Laravel development server
+```bash
+php artisan serve
+```
+
+Server sẽ chạy tại: **http://127.0.0.1:8000**
+
+### Hoặc chỉ định port khác
+```bash
+php artisan serve --port=8001
+```
+
+## Cấu trúc hệ thống
+
+### Registration Module
+- **URL**: `/registrations`
+- **Chức năng**: 
+  - Tạo form đăng ký thí sinh
+  - Danh sách registrations
+  - Xem chi tiết registration
+  - Upload profile picture và passport file
+
+### Application Module  
+- **URL**: `/applications`
+- **Chức năng**:
+  - Danh sách applications với filter
+  - Tự động tạo application từ registration
+  - Cập nhật status và payment status
+  - Xem chi tiết application
+
+## Dữ liệu mẫu
+
+Sau khi chạy seeder, hệ thống sẽ có:
+- **4 registrations mẫu** (Van A, Thi B, Van C, Thi D)
+- **4 applications mẫu** được tự động tạo từ mỗi registration
+
+
+## Tính năng chính
+
+### Registration
+- ✅ Form đăng ký với đầy đủ thông tin cá nhân
+- ✅ Upload profile picture và passport file
+- ✅ Validation form đầy đủ
+- ✅ Responsive UI với Bootstrap 5
+
+### Application
+- ✅ Tự động sinh Application ID (APP-YYYY-####)
+- ✅ Lấy thông tin từ Registration
+- ✅ Filter theo program, date range, application number
+- ✅ Quản lý status và payment status
+- ✅ Pagination và search
+
+## Demo URLs
+
+- **Homepage**: http://127.0.0.1:8000
+- **Registration Form**: http://127.0.0.1:8000/registrations/create
+- **Registration List**: http://127.0.0.1:8000/registrations  
+- **Application List**: http://127.0.0.1:8000/applications
+
+## Troubleshooting
+
+### Cấu hình PHP Extensions (quan trọng!)
+Nếu mới cài PHP, cần mở các extensions trong `php.ini`:
+
+**Tìm file php.ini:**
+```bash
+# Kiểm tra vị trí php.ini
+php --ini
+```
+
+**Mở các extensions sau (bỏ dấu `;` ở đầu dòng):**
+```ini
+extension=pdo_mysql     ; Cho MySQL
+extension=pdo_sqlite    ; Cho SQLite  
+extension=mbstring      ; Xử lý chuỗi
+extension=openssl       ; HTTPS/SSL
+extension=fileinfo      ; Upload file
+extension=gd            ; Xử lý ảnh
+extension=curl          ; HTTP requests
+extension=zip           ; Giải nén composer packages
+```
+
+**Restart web server sau khi chỉnh sửa php.ini**
+
+### Lỗi permission
+
+#### Linux/Mac
+```bash
+chmod -R 775 storage bootstrap/cache
+```
+
+#### Windows (nếu gặp lỗi quyền)
+```bash
+# Chạy CMD/PowerShell với quyền Administrator
+icacls storage /grant Users:F /T
+icacls bootstrap\cache /grant Users:F /T
+```
+
+### Lỗi database connection
+- Kiểm tra file `.env` có đúng cấu hình MySQL
+- Đảm bảo database `admission_portal` đã được tạo
+- Kiểm tra MySQL service đang chạy
+- Kiểm tra username/password MySQL đúng
+
+### Lỗi Composer
+```bash
+# Nếu composer install bị lỗi
+composer install --ignore-platform-reqs
+
+# Hoặc update composer
+composer self-update
+```
+
+### Clear cache nếu cần
+```bash
+php artisan config:clear
+php artisan cache:clear
+php artisan view:clear
+php artisan route:clear
+```
+
+### Lỗi thường gặp khác
+
+#### "Class not found" errors
+```bash
+composer dump-autoload
+```
+
+#### "Key not found" errors  
+```bash
+php artisan key:generate
+```
+
+#### Upload file không hoạt động
+- Kiểm tra `php.ini`: `file_uploads = On`
+- Kiểm tra `upload_max_filesize` và `post_max_size`
+- Tạo symbolic link: `php artisan storage:link`

@@ -14,20 +14,20 @@ return new class extends Migration
         Schema::create('registrations', function (Blueprint $table) {
             $table->id();
 
+            $table->string('profile_picture')->nullable(); // Ảnh hồ sơ - upload file
             $table->string('first_name');
             $table->string('last_name');
-            $table->string('email')->unique();
             $table->string('phone');
-            $table->enum('gender', ['male', 'female', 'other']);
+            $table->string('email')->unique();
+            $table->enum('gender', ['male', 'female', 'other']); 
             $table->date('date_of_birth');
-            $table->string('country_of_birth')->nullable();
-            $table->string('nationality')->nullable();
+            $table->string('country_of_birth');
+            $table->string('nationality');
             $table->string('passport_no')->nullable();
-            $table->string('passport_file')->nullable(); // upload file
+            $table->string('passport_file')->nullable();
             $table->string('permanent_address')->nullable(); //nơi ở thường trú
             $table->string('present_address')->nullable(); //nơi ở hiện tại
-            $table->string('program')->nullable(); //tên chương trình học
-
+            $table->string('program'); //tên chương trình học 
 
             $table->timestamps(); //created_at, updated_at của php
         });

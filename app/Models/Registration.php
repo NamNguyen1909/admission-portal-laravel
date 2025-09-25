@@ -11,14 +11,15 @@ class Registration extends Model
 
     //fillable là nhựng cột dc gán hàng loạt=> bảo mật
     protected $fillable = [
+        'profile_picture', // Thêm ảnh hồ sơ
         'first_name',
         'last_name',
-        'email',
         'phone',
+        'email',
         'gender',
         'date_of_birth',
-        'country_of_birth',
-        'nationality',
+        'country_of_birth', // Bắt buộc
+        'nationality', // Bắt buộc
         'passport_no',
         'passport_file',
         'permanent_address',
